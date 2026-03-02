@@ -59,9 +59,6 @@ ylabel('Y (km)');
 title(['Misión: ' modo]);
 plot(ref_x, ref_y, 'k--');
 
-% Dibujar la ruta teórica 
-%plot(puntos_ref(1,:), puntos_ref(2,:), 'k--', 'LineWidth', 0.5, 'HandleVisibility', 'off');
-
 for t = 0:dt:Tf
     %Lógica de Navegación
     target = puntos_ref(:, target_idx);
@@ -87,10 +84,6 @@ for t = 0:dt:Tf
     % Viento
     viento_x = 0.15*sin(t/10);
     viento_hist = [viento_hist viento_x];
-
-    
-    % Limitar el ángulo de giro 
-    %if abs(delta) > pi/4, delta = sign(delta)*pi/4; end
 
     % Modelo Cinemático 
     Vr = 3.5;
@@ -137,26 +130,6 @@ for t = 0:dt:Tf
     end
 end
 
-    %Guardar y dibujar la recorrida
-    %puntos_visitados_x = [puntos_visitados_x, x];
-    %puntos_visitados_y = [puntos_visitados_y, y];
-    %plot(puntos_visitados_x, puntos_visitados_y, 'Color', color_ruta, 'LineWidth', 1.5);
-    
-    % Dibujar el Drone
-  %  plot(x, y, 'bo', 'LineWidth', 2); 
-    %title({['Misión: ' modo], ['Progreso: ' num2str(round(target_idx/length(puntos_ref)*100)) '%']});
-    %drawnow limitrate
-
-    % Integración de Euler
-   % x = x + xp*dt;
-   % y = y + yp*dt;
-   % phi = phi + phip*dt;
-    
-    % Parar si llegamos al final 
-%    if target_idx == length(puntos_ref) && dist_to_target < 1
-  %      break
- %   end
-%end
 
 % Error GPS
 
